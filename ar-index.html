@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Піраміди Гізи (AR з MindAR)</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1;" 
+             vr-mode-ui="enabled: false" 
+             device-orientation-permission-ui="enabled: false">
+        
+        <!-- Попереднє завантаження текстури -->
+        <a-assets>
+            <img id="brick-texture" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/bricks/brick_floor_01.jpg">
+        </a-assets>
+
+        <!-- Прив'язуємо сцену до маркера (індекс 0) -->
+        <a-entity mindar-image-target="targetIndex: 0">
+            <!-- Загальний контейнер для масштабування та повороту -->
+            <a-entity scale="0.005 0.005 0.005" rotation="-90 0 0">
+                
+                <!-- *** ПІРАМІДА ХЕОПСА (1) *** -->
+                <a-cone position="0 0 0" radius-bottom="115" height="145" segments-radial="4" material="src: #brick-texture">
+                    <a-cone position="0 72.5 0" radius-bottom="5" radius-top="0" height="15" color="gold" material="shader: flat"></a-cone>
+                </a-cone>
+
+                <!-- *** ПІРАМІДА ХЕФРЕНА (2) *** -->
+                <a-cone position="-140 0 -120" radius-bottom="105" height="135" segments-radial="4" material="src: #brick-texture">
+                    <a-cone position="0 67.5 0" radius-bottom="4" radius-top="0" height="10" color="gold" material="shader: flat"></a-cone>
+                </a-cone>
+
+                <!-- *** ПІРАМІДА МІКЕРІНА (3) *** -->
+                <a-cone position="140 0 -100" radius-bottom="50" height="65" segments-radial="4" material="src: #brick-texture">
+                    <a-cone position="0 32.5 0" radius-bottom="3" radius-top="0" height="8" color="gold" material="shader: flat"></a-cone>
+                </a-cone>
+
+            </a-entity>
+        </a-entity>
+
+        <!-- Стандартна AR-камера -->
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    </a-scene>
+</body>
+</html>
